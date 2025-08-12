@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bucin Q&A untuk Cya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <style>
+    body {
+      background-color: pink;
+    }
+  </style>
+</head>
+<body class="flex justify-center items-center h-screen">
+
+  <main class="bg-white rounded-2xl p-8 shadow-lg w-[320px] text-center animate__animated animate__zoomIn">
+    <img
+      id="catGif"
+      src="https://media.tenor.com/G3MYWEkjuX4AAAAM/love-mochi-love.gif"
+      alt="Cute Cat"
+      class="mx-auto rounded-lg mb-4 shadow-lg"
+      width="200"
+    />
+    <h2 class="text-xl font-semibold text-red-500 mb-4">Hei Cya Sayang ❤️</h2>
+    <p id="question" class="text-lg font-bold text-gray-700 mb-6">
+      Cya cinta nggak sama aku?
+    </p>
+    <div id="buttons" class="flex justify-around">
+      <button id="yesBtn" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600">Yes</button>
+      <button id="noBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600">No</button>
+    </div>
+    <p id="finalMessage" class="hidden mt-6 text-gray-800 font-medium"></p>
+  </main>
+
+  <script>
+    const questionEl = document.getElementById("question");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const finalMessage = document.getElementById("finalMessage");
+    const buttons = document.getElementById("buttons");
+    const catGif = document.getElementById("catGif");
+
+    let step = 1;
+
+    yesBtn.addEventListener("click", () => {
+      if (step === 1) {
+        // Q1 → Yes
+        questionEl.textContent = "Beneran nih, Cya?";
+        catGif.src = "https://media.tenor.com/Ao9O4SGI-cQAAAAM/sleep-cat-two-cat.gif"; 
+        step = 2;
+      } else if (step === 2) {
+        // Q2 → Yes
+        showMessage("Yeayy! Aku juga cinta banget sama Cya ❤️", "https://media.tenor.com/_WZy7E7hoTcAAAAM/cat-smile.gif");
+      }
+    });
+
+    noBtn.addEventListener("click", () => {
+      if (step === 1) {
+        // Q1 → No
+        showMessage("Gapapa Cya, aku bakal tetep cinta sama kamu 🥰", "https://media.giphy.com/media/bWcYGlLqAZd1xSqm8h/giphy.gif");
+      } else if (step === 2) {
+        // Q2 → No
+        showMessage("Huft... tapi aku tetep cinta sama Cya 💖", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfodNYl00wElS6k-1w620H5fAn3tQrTCg7SQ&s");
+      }
+    });
+
+    function showMessage(text, gif) {
+      questionEl.classList.add("hidden");
+      buttons.classList.add("hidden");
+      finalMessage.textContent = text;
+      finalMessage.classList.remove("hidden");
+      catGif.src = gif;
+    }
+  </script>
+
+</body>
+</html>
